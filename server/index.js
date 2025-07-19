@@ -9,7 +9,11 @@ const responseRoutes = require("./routes/responseRoutes");
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "https://feedback-platform-project-psi.vercel.app",
+    credentials: true // only if you're using cookies/auth headers
+  }));
+  
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
