@@ -6,10 +6,11 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, {
         email,
         password,
       });

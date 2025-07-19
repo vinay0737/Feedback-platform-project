@@ -7,6 +7,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const handleRegister = async () => {
     if (!email || !password) {
@@ -17,7 +18,7 @@ function RegisterPage() {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await axios.post(`${BASE_URL}/api/auth/register`, {
         email,
         password,
       });

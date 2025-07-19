@@ -4,14 +4,16 @@ import Layout from "../components/Layout";
 
 function Dashboard() {
   const [forms, setForms] = useState([]);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchForms = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/forms/admin/all", {
+        const res = await axios.get(`${BASE_URL}/api/forms/admin/all`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        
         setForms(res.data);
       } catch (err) {
         alert("Session expired or server error. Please log in again.");

@@ -6,11 +6,12 @@ import Layout from "../components/Layout";
 function ViewResponses() {
   const { formId } = useParams();
   const [responses, setResponses] = useState([]);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchResponses = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/responses/form/${formId}`);
+        const res = await axios.get(`${BASE_URL}/api/responses/form/${formId}`);
         setResponses(res.data);
       } catch (err) {
         alert("Error fetching responses");

@@ -7,6 +7,7 @@ function CreateForm() {
   const [title, setTitle] = useState("");
   const [questions, setQuestions] = useState([{ questionText: "" }]);
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const handleQuestionChange = (index, value) => {
     const updated = [...questions];
@@ -33,7 +34,7 @@ function CreateForm() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/forms/create",
+        `${BASE_URL}/api/forms/create`,
         { title, questions },
         { headers: { Authorization: `Bearer ${token}` } }
       );
